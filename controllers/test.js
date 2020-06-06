@@ -2,15 +2,26 @@ var express = require('express');
 
 // var router = express.Router();
 
-// var autenticationModel = require('../models/autenticationModel');
+var testModel = require('../models/testModel');
 
 
 
 module.exports = {
 
-    test: async function(req, res, next){
-        console.log("hola desde el controller");
-    }
+    // test: async function(req, res, next){
+    //     console.log("hola desde el controller");
+    // },
+
+    test: async function(req, res, next) {
+        try{
+            var usuarios = await testModel.find({});
+            res.status(200).json({status: "success", message: "ok", data: usuarios});
+        }
+        catch(err)
+        {
+            //next(err);
+        }  
+      },
 
 //   save: async function(req, res, next)
 //   {
@@ -62,16 +73,7 @@ module.exports = {
 
 
 
-//   getAll: async function(req, res, next) {
-//     try{
-//         var usuarios = await autenticationModel.find({});
-//         res.status(200).json({status: "success", message: "ok", data: usuarios});
-//     }
-//     catch(err)
-//     {
-//         next(err);
-//     }  
-//   },
+
 
 
 
