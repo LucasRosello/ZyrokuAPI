@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-// var autentication = require('../controllers/autentication');
+var test = require('../controllers/test');
 
-// router.get('/', autentication.getAll);
+router.get('/', test.test);
 // router.post('/registrar', autentication.save);
 // router.post('/login', autentication.login);
 // router.get('/confirm/:userId', autentication.confirm);
