@@ -7,7 +7,7 @@ var TestSchema = mongoose.Schema({
         required: [true, "El nombre es obligatorio"],
         minlength: [2,"El telefono ingresado no es valido"],
         maxlength: [20,"El telefono ingresado no es valido"]
-        },
+        }
     // lastname: { 
     //     type: String,
     //     trim: true,

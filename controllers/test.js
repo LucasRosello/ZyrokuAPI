@@ -14,8 +14,8 @@ module.exports = {
 
     test: async function(req, res, next) {
         try{
-            var usuarios = await testModel.find({});
-            res.status(200).json({status: "success", message: "ok", data: usuarios});
+            var testVar = await testModel.find({});
+            res.status(200).json({status: "success", message: "ok", data: testVar});
         }
         catch(err)
         {
@@ -23,26 +23,26 @@ module.exports = {
         }  
       },
 
-//   save: async function(req, res, next)
-//   {
-//     try
-//     {
-//       var data = await autenticationModel.create({ phone: req.body.phone, name: req.body.name, mail: req.body.mail, password: req.body.password});
-//       let info = await transporter.sendMail({
-//         from: process.env.EMAIL_USER,
-//         to: req.body.mail,
-//         subject: "Bienvenido "+req.body.name,
-//         text: 'Bienvenido a mi web',
-//         html: 'Bienvenido a mi Web, para verificar tu cuenta entra <a href="http://localhost:3000/users/confirm/'+data._id+'">acá</a>'
-//       });
-//       console.log();
-//       res.status(200).json({status: "success", message: "Usuario añadido con exito", data: data});
-//     }
-//     catch(err)
-//     {
-//       next(err)
-//     }
-//   },
+  save: async function(req, res, next)
+  {
+    try
+    {
+      var data = await testModel.create({ name: req.body.name });
+    //   let info = await transporter.sendMail({
+    //     from: process.env.EMAIL_USER,
+    //     to: req.body.mail,
+    //     subject: "Bienvenido "+req.body.name,
+    //     text: 'Bienvenido a mi web',
+    //     html: 'Bienvenido a mi Web, para verificar tu cuenta entra <a href="http://localhost:3000/users/confirm/'+data._id+'">acá</a>'
+    //   });
+  
+      res.status(200).json({status: "success", message: "Usuario añadido con exito", data: data});
+    }
+    catch(err)
+    {
+      next(err)
+    }
+  }
 
 
 
