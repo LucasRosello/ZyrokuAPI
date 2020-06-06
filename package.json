@@ -1,0 +1,11 @@
+{
+  "name": "zyrohapy",
+  "version": "1.0.0",
+  "description": "api para zyroh",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Rosello",
+  "license": "ISC"
+}
