@@ -3,9 +3,6 @@ var router = express.Router();
 var noticiaController = require('../controllers/noticiaController');
 
 
- 
-console.log("aca")
-  
 router.get('/', noticiaController.traerUna);
 router.post('/guardar', noticiaController.guardar);
 // router.post('/login', autentication.login);

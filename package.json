@@ -8,7 +8,15 @@
   },
   "author": "Lucas Rosello",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LucasRosello/ZyrohAPI.git"
+  },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.9.20"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

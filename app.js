@@ -14,6 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(express.static(path.join(__dirname, 'public')));
 //app.use(pdf);
 
+/* ANTI CORS */
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PUT');
+  next();
+});
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
