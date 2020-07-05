@@ -3,6 +3,12 @@ var express = require('express');
 // var router = express.Router();
 
 var testModel = require('../models/testModel');
+const mercadopago = require ('mercadopago');
+
+mercadopago.configure({
+  access_token: 'TEST-1515908291492108-111121-7b1cb0cad2bbc1483d522e56e132bf4b-93177048'
+});
+
 
 
 
@@ -14,8 +20,25 @@ module.exports = {
 
     test: async function(req, res, next) {
         try{
-            var testVar = await testModel.find({});
-            res.status(200).json({status: "success", message: "ok", data: testVar});
+          let preference = {
+            items: [
+              {
+                title: 'Subcripción - 1 Mes',
+                unit_price: 1,
+                quantity: 1,
+              }
+            ]
+          };
+          
+          mercadopago.preferences.create(preference)
+          .then(function(response){
+          // Este valor reemplazará el string "$$init_point$$" en tu HTML
+            global.init_point = response.body.init_point;
+          }).catch(function(error){
+            console.log(error);
+          });
+          
+            res.status(200).json({status: "success", message: "ok", data: global.init_point});
         }
         catch(err)
         {

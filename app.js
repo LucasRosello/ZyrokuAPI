@@ -14,6 +14,10 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(express.static(path.join(__dirname, 'public')));
 //app.use(pdf);
 
+require('dotenv').config()
+//Importo el .env
+console.log(process.env.SECRET_KEY)
+
 /* ANTI CORS */
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
