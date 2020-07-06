@@ -4,6 +4,7 @@ var app = express();
 /* Routers */
 var test = require('./routes/test');
 var noticias = require('./routes/noticias');
+var autenticacion = require('./routes/autenticacion');
 
 
 //REQUIRES, PONELE
@@ -31,6 +32,7 @@ app.get('/', function (req, res) {
 
 app.use('/prueba', test);
 app.use('/noticias', noticias);
+app.use('/autenticacion', autenticacion);
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
