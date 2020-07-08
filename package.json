@@ -1,7 +1,7 @@
 {
-  "name": "zyrohapy",
+  "name": "zyroku-api",
   "version": "1.0.0",
-  "description": "api para zyroh",
+  "description": "api para zyroku",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
