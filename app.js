@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var jwt = require('jsonwebtoken');
 
 /* Routers */
 var test = require('./routes/test');
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 require('dotenv').config()
 //Importo el .env
-console.log(process.env.SECRET_KEY)
+app.set('secretKey', process.env.SECRET_KEY)
 
 /* ANTI CORS */
 app.use(function(req, res, next) {
@@ -33,6 +34,21 @@ app.get('/', function (req, res) {
 app.use('/prueba', test);
 app.use('/noticias', noticias);
 app.use('/autenticacion', autenticacion);
+
+
+function validateUser(req, res, next){
+  jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded){
+    if(err){
+      res.json({status:"error", message: err.message, data: null});
+    }
+    else
+    {
+      req.body.userId = decodedId;
+      next();
+    }
+  });
+}
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
