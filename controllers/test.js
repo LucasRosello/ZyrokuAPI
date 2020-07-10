@@ -1,5 +1,5 @@
 var express = require('express');
-
+var transporter = require('../bin/email')
 // var router = express.Router();
 
 var testModel = require('../models/testModel');
@@ -65,6 +65,27 @@ module.exports = {
     {
       next(err)
     }
+  },
+  mail: async function(req, res, next)
+  {
+    try
+    {
+      let info = await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: 'l.martin.rosello@gmail.com',
+        subject: "Bienvenido "+req.body.name,
+        text: 'Bienvenido a mi web',
+        html: 'Bienvenido a mi Web, para verificar tu cuenta entra'
+      });
+      res.status(200).json({status: "success", message: "Email enviado con exito", data: info});
+
+    }
+    catch(err)
+    {
+      console.log(err)
+      res.status(500).json({status: "error", message: "No se pudo mandar el mail", data: err});
+    }
+
   }
 
 
