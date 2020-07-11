@@ -4,6 +4,8 @@ var autenticacion = require('../controllers/autenticacionController');
 
 /* Funciones */
 router.post('/registrar', autenticacion.registrar)
+
+//post?
 router.post('/loguear', autenticacion.loguear)
 
 
