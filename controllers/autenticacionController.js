@@ -21,20 +21,23 @@ module.exports = {
         }
     },
     loguear: async function(req, res, next){
-        var usuario = await autenticacionModel.findOne({usuario: req.body.usuario});
+        try{
+            var usuario = await autenticacionModel.findOne({usuario: req.body.usuario});
             if(usuario){
                 if(bcrypt.compareSync(req.body.password, usuario.password)){
                     const token = jwt.sign({id: usuario._id}, req.app.get('secretKey'), {expiresIn: '1h'});
                     res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token}});
                 }
                 else{
-                    res.status(500).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
+                    res.status(401).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
                 }
             }
             else{
                 res.status(404).json({status: "not_found", message: "Usuario no encontrado", data: null});
             }
-
-    },
-
+        }
+        catch{
+            res.status(500).json({status: "error", message: "Error Fatal", data: null});
+        }
+    }
 }

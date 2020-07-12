@@ -10,4 +10,4 @@ mongoose.connect('mongodb://127.0.0.1:27017/zyroh', { useNewUrlParser: true, use
 });
 
 
-module.exports = mongoose; 
+module.exports = mongoose;
