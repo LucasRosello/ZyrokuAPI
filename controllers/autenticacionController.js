@@ -25,8 +25,7 @@ module.exports = {
             if(usuario){
                 if(bcrypt.compareSync(req.body.password, usuario.password)){
                     const token = jwt.sign({id: usuario._id}, req.app.get('secretKey'), {expiresIn: '1h'});
-                    console.log(token, usuario)
-                    res.status(200).json({status: "success", message: "Usuario encontrado", data: {user: usuario, token: token}});
+                    res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token}});
                 }
                 else{
                     res.status(500).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
