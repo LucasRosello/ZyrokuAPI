@@ -6,6 +6,7 @@ var jwt = require('jsonwebtoken');
 var test = require('./routes/test');
 var noticias = require('./routes/noticias');
 var autenticacion = require('./routes/autenticacion');
+var videos = require('./routes/videos');
 
 
 //REQUIRES, PONELE
@@ -34,6 +35,7 @@ app.get('/', function (req, res) {
 app.use('/prueba', test);
 app.use('/noticias', noticias);
 app.use('/autenticacion', autenticacion);
+app.use('/videos', validateUser, videos);
 
 
 function validateUser(req, res, next){
@@ -43,7 +45,7 @@ function validateUser(req, res, next){
     }
     else
     {
-      req.body.userId = decodedId;
+      req.body.userId = decoded.id;
       next();
     }
   });
