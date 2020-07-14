@@ -1,9 +1,5 @@
 var express = require('express');
-
-// var router = express.Router();
-
 var noticiaModel = require('../models/noticiaModel');
-
 
 
 module.exports = {
@@ -18,6 +14,7 @@ module.exports = {
             next(err);
         }  
     },
+
     guardar: async function(req, res, next) {
         try
         {
@@ -33,7 +30,5 @@ module.exports = {
         {
           next(err)
         }
-    }
-
-    
+    } 
 }

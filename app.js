@@ -9,35 +9,35 @@ var autenticacion = require('./routes/autenticacion');
 var videos = require('./routes/videos');
 
 
-//REQUIRES, PONELE
-// app.use(logger('dev'));
+/* Requires */
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
-//app.use(pdf);
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(logger('dev'));
 
+
+/* Importo .env */
 require('dotenv').config()
-//Importo el .env
 app.set('secretKey', process.env.SECRET_KEY)
 
-/* ANTI CORS */
+
+/* Anti CORS */
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
   res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PUT');
   next();
 });
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
 
+/* Rutas */
 app.use('/prueba', test);
 app.use('/noticias', noticias);
 app.use('/autenticacion', autenticacion);
 app.use('/videos', validateUser, videos);
 
 
+/* Validador De Usuarios */
 function validateUser(req, res, next){
   jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded){
     if(err){
@@ -52,6 +52,7 @@ function validateUser(req, res, next){
 }
 
 
+/* Server */
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });

@@ -14,10 +14,6 @@ mercadopago.configure({
 
 module.exports = {
 
-    // test: async function(req, res, next){
-    //     console.log("hola desde el controller");
-    // },
-
     test: async function(req, res, next) {
         try{
           let preference = {

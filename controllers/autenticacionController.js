@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 
 module.exports = {
+
     registrar: async function(req, res, next){
         try{
             var datos = await autenticacionModel.create({
@@ -20,6 +21,7 @@ module.exports = {
             res.status(500).json({status: "error", message: "Error al registrar", data: null});
         }
     },
+
     loguear: async function(req, res, next){
         try{
             var usuario = await autenticacionModel.findOne({usuario: req.body.usuario});

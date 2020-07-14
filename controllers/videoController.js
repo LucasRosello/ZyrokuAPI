@@ -1,8 +1,6 @@
 var express = require('express');
 var transporter = require('../bin/email')
-// var router = express.Router();
-
-var testModel = require('../models/testModel');
+var videoModel = require('../models/videoModel');
 
 
 module.exports = {
