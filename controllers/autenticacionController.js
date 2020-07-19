@@ -23,6 +23,7 @@ module.exports = {
     },
 
     loguear: async function(req, res, next){
+        console.log("peticion de login recibida")
         try{
             var usuario = await autenticacionModel.findOne({usuario: req.body.usuario});
             if(usuario){

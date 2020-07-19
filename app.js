@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var cors = require('cors')
 var jwt = require('jsonwebtoken');
 
 /* Routers */
@@ -23,11 +24,7 @@ app.set('secretKey', process.env.SECRET_KEY)
 
 
 /* Anti CORS */
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PUT');
-  next();
-});
+app.use(cors())
 
 
 /* Rutas */
