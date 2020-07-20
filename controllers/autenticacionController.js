@@ -32,11 +32,14 @@ module.exports = {
                     res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token}});
                 }
                 else{
-                    res.status(401).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
+                    res.json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
+                    //res.status(401).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
+                    
                 }
             }
             else{
-                res.status(404).json({status: "not_found", message: "Usuario no encontrado", data: null});
+                res.json({status: "not_found", message: "Usuario no encontrado", data: null});
+                //res.status(404).json({status: "not_found", message: "Usuario no encontrado", data: null});
             }
         }
         catch{
