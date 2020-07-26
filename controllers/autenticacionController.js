@@ -48,15 +48,28 @@ module.exports = {
     },
 
     generarRecuperacionPassword: async function(req, res, next){
-        //mandar mail con token?
+        //mandar mail con token
 
     },
 
     cambiarPass: async function(req, res, next){
-        var usuario = await autenticacionModel.updateOne(
-            {usuario: req.body.usuario},
-            { $set: {"password": bcrypt.hashSync(req.body.nuevaPass, 10)}}
-        );
-        res.status(200).json({status: "success", message: "Contraseña cambiada con exito", data: usuario});
+
+        jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), async function (err, decoded){
+
+            if(err){
+              res.json({status:"error", message: err.message, data: null});
+            }
+            else
+            {
+                var usuario = await autenticacionModel.updateOne(
+                    {_id: decoded.id},
+                    { $set: {"password": bcrypt.hashSync(req.body.nuevaPass, 10)}}
+                );
+                    
+                res.status(200).json({status: "success", message: "Contraseña cambiada con exito", data: usuario});
+            }
+
+        });
+   
     }
 }
