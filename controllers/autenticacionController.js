@@ -45,5 +45,18 @@ module.exports = {
         catch{
             res.status(500).json({status: "error", message: "Error Fatal", data: null});
         }
+    },
+
+    generarRecuperacionPassword: async function(req, res, next){
+        //mandar mail con token?
+
+    },
+
+    cambiarPass: async function(req, res, next){
+        var usuario = await autenticacionModel.updateOne(
+            {usuario: req.body.usuario},
+            { $set: {"password": bcrypt.hashSync(req.body.nuevaPass, 10)}}
+        );
+        res.status(200).json({status: "success", message: "Contraseña cambiada con exito", data: usuario});
     }
 }
