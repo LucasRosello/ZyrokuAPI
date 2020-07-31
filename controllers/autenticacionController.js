@@ -26,21 +26,21 @@ module.exports = {
         console.log("peticion de login recibida")
         try{
             var usuario = await autenticacionModel.findOne({usuario: req.body.usuario});
-            if(usuario){
-                if(bcrypt.compareSync(req.body.password, usuario.password)){
-                    const token = jwt.sign({id: usuario._id}, req.app.get('secretKey'), {expiresIn: '1h'});
-                    res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token}});
-                }
-                else{
-                    res.json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
-                    //res.status(401).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
-                    
-                }
-            }
-            else{
+
+            if(!usuario){
                 res.json({status: "not_found", message: "Usuario no encontrado", data: null});
                 //res.status(404).json({status: "not_found", message: "Usuario no encontrado", data: null});
             }
+            
+            if(bcrypt.compareSync(req.body.password, usuario.password)){
+                const token = jwt.sign({id: usuario._id}, req.app.get('secretKey'), {expiresIn: '1h'});
+                res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token}});
+            }
+            else{
+                res.json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
+                //res.status(401).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
+     
+            }   
         }
         catch{
             res.status(500).json({status: "error", message: "Error Fatal", data: null});
