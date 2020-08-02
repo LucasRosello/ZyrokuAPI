@@ -8,4 +8,5 @@ router.post('/registrar', autenticacion.registrar)
 router.post('/loguear', autenticacion.loguear)
 router.post('/cambiarPass', autenticacion.cambiarPass)
 
+
 module.exports = router;
