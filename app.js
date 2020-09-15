@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 var test = require('./routes/test');
 var noticias = require('./routes/noticias');
 var autenticacion = require('./routes/autenticacion');
-var videos = require('./routes/videos');
+var clases = require('./routes/clases');
 
 
 /* Requires */
@@ -31,7 +31,7 @@ app.use(cors())
 app.use('/prueba', test);
 app.use('/noticias', noticias);
 app.use('/autenticacion', autenticacion);
-app.use('/videos', validateUser, videos);
+app.use('/clases', /*validateUser,*/ clases);
 
 
 /* Validador De Usuarios */
