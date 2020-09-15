@@ -13,10 +13,12 @@ module.exports = {
         try{
             var datos = await claseModel.create({
                 titulo: req.body.titulo,
-                usuario: req.body.usuario,
-                password: req.body.password
+                url: req.body.url,
+                modulo: req.body.modulo,
+                claseAnterior: req.body.claseAnterior,
+                claseSiguiente: req.body.claseSiguiente,
             });
-            res.status(200).json({status: "success", message: "Usuario registrado con exito", data: datos});
+            res.status(200).json({status: "success", message: "Clase creada con exito", data: datos});
         }
         catch{
             res.status(500).json({status: "error", message: "Error al crear la clase", data: null});
