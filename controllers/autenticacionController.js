@@ -29,7 +29,6 @@ module.exports = {
 
             if(!usuario){
                 res.json({status: "not_found", message: "Usuario no encontrado", data: null});
-                //res.status(404).json({status: "not_found", message: "Usuario no encontrado", data: null});
             }
             
             if(bcrypt.compareSync(req.body.password, usuario.password)){
@@ -38,8 +37,6 @@ module.exports = {
             }
             else{
                 res.json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
-                //res.status(401).json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
-     
             }   
         }
         catch{

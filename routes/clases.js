@@ -4,7 +4,8 @@ var claseController = require('../controllers/claseController');
 
 
 /* Funciones */
-router.get('/:id', claseController.traerClase);
+router.get('/', claseController.traerClase);
+router.get('/:id', claseController.traerClasePorId);
 router.post('/',claseController.crearClase);
 
 

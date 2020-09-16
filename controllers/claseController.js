@@ -6,7 +6,24 @@ var claseModel = require('../models/claseModel');
 module.exports = {
 
     traerClase: async function(req, res, next) {
-        res.status(200).json({status: "exito", message: "WIP", data: null});
+        res.status(200).json({status: "exito", message: "WIP", data: {"clase":"5f6260ee325f5b4743fa7d38"}});
+    },
+
+    traerClasePorId: async function(req, res, next) {
+        try
+        {
+            var clase = await claseModel.findOne({_id:"5f6260ee325f5b4743fa7d38"});
+            if (!clase)
+            {
+                res.json({status: "not_found", message: "Clase no encontrada", data: null});
+            }
+            res.status(200).json({status: "success", message: "Clase encontrada", data: {clase}});   
+        }
+        catch(err)
+        {
+           next(err);
+        }
+          
     },
 
     crearClase: async function(req, res, next) {
