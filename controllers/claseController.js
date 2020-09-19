@@ -41,4 +41,33 @@ module.exports = {
             res.status(500).json({status: "error", message: "Error al crear la clase", data: null});
         }
     },
+
+    adjuntarClaseSiguiente: async function (req, res, next) {
+        try{
+            var claseActual = await claseModel.updateOne(
+                { "_id": req.body.claseActual},
+                { 
+                    $set: 
+                    {
+                    "claseSiguiente":req.body.claseSiguiente
+                    }
+                }
+            );
+
+            var claseSiguiente = await claseModel.updateOne(
+                { "_id": req.body.claseSiguiente},
+                { 
+                    $set: 
+                    {
+                    "claseAnterior":req.body.claseActual
+                    }
+                }
+            );
+
+            res.status(200).json({status: "success", message: "Clase siguiente adjuntada con exito", data: claseActual, claseSiguiente});
+        }
+        catch{
+            res.status(500).json({status: "error", message: "Error al adjuntar la clase siguiente", data: null});
+        }
+    }
 }

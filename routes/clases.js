@@ -7,6 +7,7 @@ var claseController = require('../controllers/claseController');
 router.get('/', claseController.traerClase);
 router.get('/:id', claseController.traerClasePorId);
 router.post('/',claseController.crearClase);
+router.post('/claseSiguiente',claseController.adjuntarClaseSiguiente);
 
 
 
