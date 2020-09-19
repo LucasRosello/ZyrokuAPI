@@ -12,30 +12,30 @@ module.exports = {
     traerClasePorId: async function(req, res, next) {
         try
         {
-            var clase = await claseModel.findOne({_id:"5f6260ee325f5b4743fa7d38"});
+            var clase = await claseModel.findOne({_id:req.params.id});
             if (!clase)
             {
                 res.json({status: "not_found", message: "Clase no encontrada", data: null});
             }
-            res.status(200).json({status: "success", message: "Clase encontrada", data: {clase}});   
+            res.status(200).json({status: "success", message: "Clase encontrada", data: clase});   
         }
         catch(err)
         {
-           next(err);
+            res.status(500).json({status: "error", message: "Error al crear la clase", data: null});
         }
           
     },
 
     crearClase: async function(req, res, next) {
         try{
-            var datos = await claseModel.create({
+            var clase = await claseModel.create({
                 titulo: req.body.titulo,
                 url: req.body.url,
                 modulo: req.body.modulo,
                 claseAnterior: req.body.claseAnterior,
                 claseSiguiente: req.body.claseSiguiente,
             });
-            res.status(200).json({status: "success", message: "Clase creada con exito", data: datos});
+            res.status(200).json({status: "success", message: "Clase creada con exito", data: clase});
         }
         catch{
             res.status(500).json({status: "error", message: "Error al crear la clase", data: null});
