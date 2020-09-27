@@ -8,7 +8,7 @@ var test = require('./routes/test');
 var noticias = require('./routes/noticias');
 var autenticacion = require('./routes/autenticacion');
 var clases = require('./routes/clases');
-
+var premios = require('./routes/premios')
 
 /* Requires */
 app.use(express.json());
@@ -32,6 +32,7 @@ app.use('/prueba', test);
 app.use('/noticias', noticias);
 app.use('/autenticacion', autenticacion);
 app.use('/clases', /*validateUser,*/ clases);
+app.use('/premios', premios);
 
 
 /* Validador De Usuarios */
