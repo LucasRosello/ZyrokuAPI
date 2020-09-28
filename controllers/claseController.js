@@ -15,7 +15,7 @@ module.exports = {
             var clase = await claseModel.findOne({_id:req.params.id});
             if (!clase)
             {
-                res.json({status: "not_found", message: "Clase no encontrada", data: null});
+                return res.json({status: "not_found", message: "Clase no encontrada", data: null});
             }
             res.status(200).json({status: "success", message: "Clase encontrada", data: clase});   
         }

@@ -32,7 +32,7 @@ app.use('/prueba', test);
 app.use('/noticias', noticias);
 app.use('/autenticacion', autenticacion);
 app.use('/clases', /*validateUser,*/ clases);
-app.use('/premios', premios);
+app.use('/premios', validateUser, premios);
 
 
 /* Validador De Usuarios */
