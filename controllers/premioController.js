@@ -6,6 +6,12 @@ var claseModel = require('../models/claseModel');
 module.exports = {
 
     traerPrecio: async function(req, res, next) {
+        /*
+        Traigo todos los premios correspondientes a los ultimos (hoy - ultimoDiaDePaga) dias y hago:
+
+        var precioConDescuento = req.app.get("precio") - sumaDePremios;
+        return precioConDescuento;
+        */
         res.status(200).json({status: "exito", message: "Se trajeron correctamente las noticias", data: 200});
     },
 
