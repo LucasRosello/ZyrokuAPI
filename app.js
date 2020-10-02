@@ -10,6 +10,7 @@ var autenticacion = require('./routes/autenticacion');
 var clases = require('./routes/clases');
 var premios = require('./routes/premios');
 var pagos = require('./routes/pagos');
+var feedbacks = require('./routes/feedbacks');
 
 /* Requires */
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use('/autenticacion', autenticacion);
 app.use('/clases', /*validateUser,*/ clases);
 app.use('/premios', validateUser, premios);
 app.use('/pagos', pagos)
+app.use('/feedbacks', feedbacks)
 
 
 /* Validador De Usuarios */
