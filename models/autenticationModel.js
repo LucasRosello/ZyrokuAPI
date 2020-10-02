@@ -8,9 +8,9 @@ var UsuarioSchema = mongoose.Schema({
         type: String,
         trim: true,
         lowercase: true,
-        unique: true,
+        unique: true, //rompe, fijarse
         required: 'El email es obligatorio',
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Porfavor ingrese un email valido']
+        //match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Porfavor ingrese un email valido']
     },
     password:{
         type: String,

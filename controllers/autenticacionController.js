@@ -18,7 +18,7 @@ module.exports = {
             res.status(200).json({status: "success", message: "Usuario registrado con exito", data: datos});
         }
         catch{
-            res.status(500).json({status: "error", message: "Error al registrar", data: null});
+            res.status(500).json({status: "error", message: "Error al registrar", data: err});
         }
     },
 
