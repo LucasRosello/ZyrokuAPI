@@ -10,7 +10,6 @@ var UsuarioSchema = mongoose.Schema({
         lowercase: true,
         unique: true,
         required: 'El email es obligatorio',
-        validate: [validateEmail, 'Porfavor ingrese un email valido'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Porfavor ingrese un email valido']
     },
     password:{
