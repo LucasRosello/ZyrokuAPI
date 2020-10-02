@@ -12,7 +12,7 @@ module.exports = {
         try{
             var datos = await autenticacionModel.create({
                 nombre: req.body.nombre,
-                usuario: req.body.usuario,
+                email: req.body.email,
                 password: req.body.password
             });
             res.status(200).json({status: "success", message: "Usuario registrado con exito", data: datos});
@@ -25,7 +25,7 @@ module.exports = {
     loguear: async function(req, res, next){
         console.log("peticion de login recibida")
         try{
-            var usuario = await autenticacionModel.findOne({usuario: req.body.usuario});
+            var usuario = await autenticacionModel.findOne({email: req.body.email});
 
             if(!usuario){
                 res.json({status: "not_found", message: "Usuario no encontrado", data: null});
@@ -33,7 +33,7 @@ module.exports = {
             
             if(bcrypt.compareSync(req.body.password, usuario.password)){
                 const token = jwt.sign({id: usuario._id}, req.app.get('secretKey'), {expiresIn: '1h'});
-                res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token, usuario:usuario.usuario}});
+                res.status(200).json({status: "success", message: "Usuario encontrado", data: {token: token, usuario:usuario}});
             }
             else{
                 res.json({status: "wrong_password", message: "Contraseña incorrecta", data: null});
