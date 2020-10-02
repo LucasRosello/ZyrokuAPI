@@ -10,6 +10,14 @@ module.exports = {
 
     registrar: async function(req, res, next){
         try{
+            if(!req.body.email){
+                return res.json({status: "error", message: "El email es obligario", data: null});
+            }
+
+            if(!req.body.password){
+                return res.json({status: "error", message: "La contraseña es obligatoria", data: null});
+            }
+
             var datos = await autenticacionModel.create({
                 nombre: req.body.nombre,
                 email: req.body.email,
@@ -18,7 +26,7 @@ module.exports = {
             res.status(200).json({status: "success", message: "Usuario registrado con exito", data: datos});
         }
         catch{
-            res.status(500).json({status: "error", message: "Error al registrar", data: err});
+            res.status(500).json({status: "error", message: "Error al registrar", data: null});
         }
     },
 
@@ -28,7 +36,7 @@ module.exports = {
             var usuario = await autenticacionModel.findOne({email: req.body.email});
 
             if(!usuario){
-                res.json({status: "not_found", message: "Usuario no encontrado", data: null});
+                return res.json({status: "not_found", message: "Usuario no encontrado", data: null});
             }
             
             if(bcrypt.compareSync(req.body.password, usuario.password)){
