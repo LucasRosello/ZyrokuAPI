@@ -52,9 +52,17 @@ module.exports = {
         }
     },
 
-    generarRecuperacionPassword: async function(req, res, next){
+    generarCambioPassword: async function(req, res, next){
         //mandar mail con token
+        var usuario = await autenticacionModel.findOne({email: req.body.email});
 
+        if(!usuario){
+            return res.json({status: "not_found", message: "Usuario no encontrado", data: null});
+        }
+
+        const token = jwt.sign({id: usuario._id}, req.app.get('secretKey'), {expiresIn: '1h'});
+
+        res.status(200).json({status: "success", message: "Cambio de contraseña generado con exito", data: "http://localhost:4200/unaRuta/"+token});
     },
 
     cambiarPass: async function(req, res, next){

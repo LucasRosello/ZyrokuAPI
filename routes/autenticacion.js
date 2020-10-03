@@ -7,6 +7,7 @@ var autenticacion = require('../controllers/autenticacionController');
 router.post('/registrar', autenticacion.registrar)
 router.post('/loguear', autenticacion.loguear)
 router.post('/cambiarPass', autenticacion.cambiarPass)
+router.post('/generarCambioPassword', autenticacion.generarCambioPassword)
 
 
 module.exports = router;
