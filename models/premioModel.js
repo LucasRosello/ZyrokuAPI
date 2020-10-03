@@ -26,4 +26,4 @@ var premioSchema = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('premioModel',premioSchema);
+module.exports = mongoose.model('premio',premioSchema);

@@ -21,4 +21,4 @@ var pagoSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('pagoModel',pagoSchema);
+module.exports = mongoose.model('pago',pagoSchema);

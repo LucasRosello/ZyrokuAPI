@@ -30,4 +30,4 @@ var noticiaSchema = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('noticiaModel',noticiaSchema);
+module.exports = mongoose.model('noticia',noticiaSchema);
